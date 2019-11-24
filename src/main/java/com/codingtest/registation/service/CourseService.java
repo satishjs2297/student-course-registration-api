@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codingtest.registation.dao.repository.CourseRepository;
+import com.codingtest.registation.exception.StudentCourseIllegalStateException;
 import com.codingtest.registation.model.Course;
 import com.codingtest.registation.model.Student;
 
@@ -28,20 +29,25 @@ public class CourseService {
 		LOG.info("Course: {} has been successfully added. ", course.getCourseId());
 		return course.getCourseId();
 	}
-	
+
 	public void removeCourse(Long courseId) {
-		courseRepository.deleteById(courseId);
+		Optional<Course> course = courseRepository.findById(courseId);
+		if (!course.isPresent()) {
+			throw new StudentCourseIllegalStateException("Failed to remove Course. Invalid CourseId :: " + courseId);
+		}
+		courseRepository.delete(course.get());
 	}
 
 	public void registerStudentToCourse(Long courseId, Set<Student> students) {
 		LOG.info("CourseId :: {} , Student :: {}", courseId, students);
 		Optional<Course> courseOptional = courseRepository.findById(courseId);
-		if (courseOptional.isPresent()) {
-			Course course = courseOptional.get();
-			students.addAll(course.getStudents());
-			course.setStudents(students);
-			courseRepository.save(course);
+		if (!courseOptional.isPresent()) {
+			throw new StudentCourseIllegalStateException("Failed to register Student. Invalid CourseId :: " + courseId);
 		}
+		Course course = courseOptional.get();
+		students.addAll(course.getStudents());
+		course.setStudents(students);
+		courseRepository.save(course);
 	}
 
 	public Optional<Course> getCourseByCourseName(String courseName) {

@@ -31,27 +31,27 @@ public class StudentCourseRegistrationController {
 		this.courseService = courseService;
 	}
 
-	@PostMapping("/addStudent")
+	@PostMapping("/student")
 	public String addStudent(@RequestBody Student student) {
 		LOG.info("Student :: Student Name {}", student.getStudentName());
 		studentService.addStudent(student);
 		return "Student with Name:" + student.getStudentName() + " has been Added.";
 	}
 
-	@DeleteMapping("/removeStudent/{studentId}")
+	@DeleteMapping("/student/{studentId}")
 	public String removeStudent(Long studentId) {
 		studentService.removeStudent(studentId);
 		return "Student with Id:" + studentId + " has been removed.";
 	}
 
-	@PostMapping("/addCourse")
+	@PostMapping("/course")
 	public String addCourse(@RequestBody Course course) {
 		LOG.info("Course  ::Course Name {}", course.getCourseName());
 		courseService.addCourse(course);
 		return "Course with Name:" + course.getCourseName() + " has been Added.";
 	}
 
-	@DeleteMapping("/removeCourse/{courseId}")
+	@DeleteMapping("/course/{courseId}")
 	public String removeCourse(Long courseId) {
 		courseService.removeCourse(courseId);
 		return "Course with Id:" + courseId + " has been removed.";
@@ -63,7 +63,7 @@ public class StudentCourseRegistrationController {
 		return "Students has been successfully Enrolled to Course :: " + courseId;
 	}
 
-	@GetMapping("/getStudentsByCourseName/{courseName}")
+	@GetMapping("/studentsByCourseName/{courseName}")
 	public Set<Student> getStudentsByCourseName(@PathVariable String courseName) {
 		return studentService.getStudentsByCourseName(courseName);
 	}
