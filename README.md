@@ -28,6 +28,7 @@ $ Open web browser & hit the swagger url: http://localhost:8080/student-course/s
 
 - Java 8
 - Spring Boot: 2.1.7.RELEASE
+- [Lombok For Building POJO](https://projectlombok.org/)
 - H2 In-Memory DB
 - Swagger2 - For API Local Testing
 
