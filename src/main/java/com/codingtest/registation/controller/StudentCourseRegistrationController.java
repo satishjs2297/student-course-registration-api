@@ -2,6 +2,8 @@ package com.codingtest.registation.controller;
 
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class StudentCourseRegistrationController {
 	}
 
 	@PostMapping("/student")
-	public String addStudent(@RequestBody Student student) {
+	public String addStudent(@Valid @RequestBody Student student) {
 		LOG.info("Student :: Student Name {}", student.getStudentName());
 		studentService.addStudent(student);
 		return "Student with Name:" + student.getStudentName() + " has been Added.";
@@ -45,7 +47,7 @@ public class StudentCourseRegistrationController {
 	}
 
 	@PostMapping("/course")
-	public String addCourse(@RequestBody Course course) {
+	public String addCourse(@Valid @RequestBody Course course) {
 		LOG.info("Course  ::Course Name {}", course.getCourseName());
 		courseService.addCourse(course);
 		return "Course with Name:" + course.getCourseName() + " has been Added.";

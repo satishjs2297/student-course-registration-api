@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,7 @@ public class Course implements Serializable {
 	private Long courseId;
 
 	@Column(name = "COURSE_NAME")
+	@NotEmpty(message = "Please provide a courseName")
 	private String courseName;
 
 	@Column(name = "COURSE_DETAILS")

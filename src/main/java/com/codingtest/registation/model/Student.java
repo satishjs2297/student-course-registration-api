@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +28,11 @@ public class Student implements Serializable {
 	private Long studentId;
 
 	@Column(name = "STUDENT_NAME")
+	@NotEmpty(message = "Please provide a studentName")
 	private String studentName;
 
 	@Column(name = "MOBILE_NUMBER")
+	@NotEmpty(message = "Please provide a mobileNumber")
 	private String mobileNumber;
 
 	@Column(name = "ADDRESS")
