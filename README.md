@@ -32,6 +32,13 @@ $ Open web browser & hit the swagger url: http://localhost:8080/student-course/s
 - H2 In-Memory DB
 - Swagger2 - For API Local Testing
 
+## Running the Unit tests
+```
+$ Open Terminal or commandLine window
+$ cd <path/to/student-course-registration-api>
+$ mvn test -e
+```
+
 ## Testing API
 - Open http://localhost:8080/student-course/swagger-ui.html
 - Click on addCourse/addStudent or any one of the endPoint.
