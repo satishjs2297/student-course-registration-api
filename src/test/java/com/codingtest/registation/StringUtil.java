@@ -49,12 +49,12 @@ public class StringUtil {
         if(n > k) {
             System.out.println("NO");
         } else {
-            boolean isMatched = true;
+            boolean isMatched = false;
             for(int i = 0; i< k; i++) {
                 int j = i;
                 int matchCount = 0;
                 for(int p =0; p < n; p++) {
-                    if(j + p > k) {
+                    if(j + p >= k) {
                         isMatched = false;
                         break;
                     }
